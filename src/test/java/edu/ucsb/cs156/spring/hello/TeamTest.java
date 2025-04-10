@@ -15,12 +15,53 @@ public class TeamTest {
     }
 
     @Test
+    public void toString_returns_correct_string() {
+        assertEquals("Team(name=test-team, members=[])", team.toString());
+    }
+
+    @Test
     public void getName_returns_correct_name() {
        assert(team.getName().equals("test-team"));
     }
 
-   
-    // TODO: Add additional tests as needed to get to 100% jacoco line coverage, and
-    // 100% mutation coverage (all mutants timed out or killed)
+    @Test
+    public void equals_returns_true_for_same_name_and_members() {
+        Team team1 = new Team("test-team");
+        Team team2 = new Team("test-team");
 
+        assertEquals(team1, team2);
+    }
+
+    @Test
+    public void equals_returns_true_for_same_object() {
+        Team team1 = new Team("test-team");
+
+        assertEquals(team1, team1);
+    }
+
+    @Test
+    public void equals_returns_false_for_different_name() {
+        Team team1 = new Team("test-team");
+        Team team2 = new Team("another-team");
+
+        assert(!team1.equals(team2));
+    }
+
+    @Test
+    public void equals_returns_false_for_null_and_other_type() {
+        Team team1 = new Team("test-team");
+
+        assert(!team1.equals(null)); 
+        assert(!team1.equals("random-string")); 
+    }
+
+    @Test
+    public void hashCode_returns_expected_value_for_known_team() {
+        Team t = new Team("test-team");
+
+        int result = t.hashCode();
+        int expectedResult = -1226298695;
+
+        assertEquals(expectedResult, result);
+    }
 }
