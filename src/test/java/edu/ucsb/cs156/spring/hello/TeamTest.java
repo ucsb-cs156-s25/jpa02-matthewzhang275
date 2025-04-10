@@ -64,4 +64,15 @@ public class TeamTest {
 
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void equals_returns_false_when_members_differ_but_names_match() {
+        Team team1 = new Team("test-team");
+        team1.addMember("Alice");
+
+        Team team2 = new Team("test-team");
+        team2.addMember("Bob");
+
+        assert(!team1.equals(team2));
+    }
 }
